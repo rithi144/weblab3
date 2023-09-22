@@ -1,0 +1,373 @@
+# weblab3
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Spacecraft and Satellites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Set the background color here */
+            background-image: url("http://ietechennai.in/assets/img/logo.png");
+            background-size: 75%;
+            background-repeat: no-repeat;
+        }
+
+        /* Background text box */
+        .background-text-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background color */
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: -1; /* Push the text box below other content */
+        }
+
+        header {
+            background-color: #388087;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top; /* You can adjust this to align the image */
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .header-image {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .text-box {
+            position: absolute;
+            top: 50%; /* Adjust the vertical position as needed */
+            left: 50%; /* Adjust the horizontal position as needed */
+            transform: translate(-50%, -50%); /* Center the text box */
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with opacity */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a shadow for better visibility */
+            z-index: 1; /* Ensure the text box is above the background image */
+        }
+
+        .nested-text-box {
+            background-color: #388087; /* Background color for the nested text box */
+            color: white; /* Text color for the nested text box */
+            padding: 10px; /* Adjust padding as needed */
+            border-radius: 5px; /* Add rounded corners */
+            margin-top: 20px; /* Adjust the margin as needed */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsdBAJAmrgNSyI2D27Pwtt64kNKRULrV7ytQ&usqp=CAU");
+            /* Add other background properties here if needed */
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-color: #f6f6f6;
+        }
+
+        .header-title {
+            font-size: 28px; /* Adjust the size as needed */
+        }
+
+        .header-subtitle {
+            font-size: 18px; /* Adjust the size as needed */
+        }
+
+        .navigation {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .navigation li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .datalist-container {
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            font-size: 14px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Adjust the z-index as needed */
+        }
+
+        /* Adjust the top margin for the content to prevent overlap with the fixed header */
+        .section {
+            margin-top: 100px; /* Adjust the margin as needed */
+        }
+
+        #ip4 {
+            border-radius: 15px 50px 30px;
+            border: 2px solid #609;
+            padding: 20px;
+            width: 200px;
+            height: 15px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px; /* Set the perspective for the 3D effect */
+        }
+
+        .card {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            position: relative;
+            transform-style: preserve-3d; /* Enable 3D transformations */
+            transform: rotateY(0deg); /* Rotate the cards initially */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .card:hover {
+            transform: rotateY(180deg); /* Rotate the cards on hover */
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            backface-visibility: hidden; /* Hide the backface of the card */
+        }
+
+        .text-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out; /* Add a smooth transition effect */
+        }
+
+        .card:hover .text-box {
+             transform: rotateY(180deg);
+             opacity: 1; /* Show the text box on hover */
+        }
+
+
+
+
+
+footer {
+    background-color: #388087; /* Set the background color of the footer */
+    color: white; /* Text color for the contact details */
+    text-align: center; /* Center-align the content in the footer */
+    padding: 20px; /* Add some padding for spacing */
+}
+
+.contact-details {
+    max-width: 600px; /* Limit the width of the contact details container */
+    margin: 0 auto; /* Center-align the contact details container */
+}
+
+.contact-details h3 {
+    font-size: 18px; /* Set the font size for the heading */
+    margin-bottom: 10px; /* Add spacing below the heading */
+}
+
+.contact-details p {
+    font-size: 16px; /* Set the font size for the contact details */
+    margin: 5px 0; /* Add spacing between each detail */
+}
+
+/* Style for the dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for the main item in the dropdown */
+.dropdown .dropbtn {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 16px 10px;
+}
+
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white; /* Background color for the dropdown menu */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style for the dropdown links */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+    background-color: #388087;
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body style="background-color: White Smoke;">
+    <header>
+        <img class="header-image" src="C:\Users\rithi\Downloads\ietelogo.png" alt=""><h1 class="header-title"><strong>IETE</strong></h1>
+        <span class="header-subtitle">The Institution of Electronics and Telecommunication Engineers, Chennai</span>
+        <ul class="navigation">
+            <li><a href="file:///C:/Users/rithi/OneDrive/Desktop/page.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Executive Committee</a></li>
+            <li><a href="">Events</a></li>
+            <li><a href="C:\New folder\packetcodeofficial.github.io\webiste1\memberweb.html">Membership</a></li>
+            <li class="dropdown">
+        <a href="#" class="dropbtn">Chencon</a>
+        <div class="dropdown-content">
+            <a href="#">2020</a>
+            <a href="http://www.ietechennai.in/assets/pdf/chencon2021_proceedings.pdf">2021</a>
+            <!-- Add more submenu items as needed -->
+        </div>
+    </li>
+            <li class="dropdown">
+        <a href="#" class="dropbtn">Chenlink Newsletter</a>
+        <div class="dropdown-content">
+            <a href="http://www.ietechennai.in/assets/pdf/chenlink1_3.pdf">Vol.1,No.3</a>
+            <a href="http://www.ietechennai.in/assets/pdf/chenlink1_2.pdf">Vol.1,No.2</a>
+            <a href="http://www.ietechennai.in/assets/pdf/chenlink1_1.pdf">Vol.1,No.1</a>
+            <!-- Add more submenu items as needed -->
+        </div>
+    </li>            <li><a href="">Contact</a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="section">
+            <h2>Satellites</h2>
+        </div>
+        <!-- Background text box -->
+        <div class="background-text-box">
+            <strong><h2 style="color: white;">UPCOMING EVENTS AND UPDATES</h2></strong>
+            <!-- Nested text box -->
+            <div class="nested-text-box">
+                <h3 style="color: white;">Webinar on IoT Security</h3>
+                <p>May 30, 2023</p>
+                <p>Join us for an exciting webinar on IoT security. Explore the latest trends and best practices in securing the Internet of Things.</p>
+            </div>
+        </div>
+    </main>
+    <div class="scrolling-content">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <p>
+            <center><strong>"INNOVATION FOR THE PEOPLE AND BY THE PEOPLE IS THE REACTION OF OUR NEW INDIA"</strong><br>
+            - NARENDRA MODI, HON'BLE PRIME MINISTER OF INDIA.<br><br>
+
+            Chennai Centre of IETE is committed to attain commanding heights and achieve the status of “Centre of Excellence” in Technical, Engineering & Management education by harnessing the best practices in educational innovation and through its concerted endeavors like quality teaching, industrial consultancy and training to the aspirants including corporate training.<br><br>
+            <button type="submit" id="ip4" value="READ MORE">READ MORE</button>
+            </center>
+        </p>
+<p><strong>Recent events</strong></p>
+        <div class="container">
+            <div class="card">
+                <img src="http://ietechennai.in/assets/img/events/Slide4.jpeg" alt="Image 1">
+                <div class="text-box">
+                    <h2><strong>PROFESSIONAL RESUME WRITING</strong><br></h2>
+                    <p>
+17th October 2020(Saturday)<br><br>
+Mr.M.Vigneshwaran (Softskill Trainer/ e-learning developer) gave a guidance session on RESUME building in a Professional manner</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="http://ietechennai.in/assets/img/events/Slide3.jpeg" alt="Image 2">
+                <div class="text-box">
+                    <h2><strong>EVOLUTION OF COMPUTING AND SKILL SETS FOR THE FUTURE</strong><br></h2>
+                    <p>
+17th October 2020(Saturday)<br><br>
+Mr.MallikMahalingam (CEO,Springpath (CISCO)) commenced with the evolution of hardware and operating software
+</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="http://ietechennai.in/assets/img/events/Slide12.jpeg" alt="Image 3">
+                <div class="text-box">
+                    <h2><strong>EASE THE ERROR 1.0</strong></h2>
+                    <p>
+October 10 & 11 2020<br><br>
+24 Hour national level hackathon which challenged students to think out-of-the-box and offer innovative ideas</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="http://ietechennai.in/assets/img/events/Slide2.jpeg" alt="Image 4">
+                <div class="text-box">
+                    <h2><strong>5G AND IT'S HISTORYS</strong></h2>
+                    <p>
+20/09/2020<br><br>
+Mr.SunderPalaniraj (Director IC-design, TDKInvenSense) gave a technical talk on communication networks</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+        <div class="contact-details">
+            <h3>IETE Chennai</h3>
+            <p>Address: IETE Chennai centre, No: 37, Tamil Nadu 600086
+Conran Smith Road Entrance Peters Road,
+Gopalapuram,Chennai,
+</p>
+            <p>Email: ietechennai@gmail.com</p>
+            <p>Phone: 044 2835 0773</p>
+            <p>&copy; 2023 rithikac. All rights reserved.</p>
+        </div>
+</footer>
+</body>
+</html>
